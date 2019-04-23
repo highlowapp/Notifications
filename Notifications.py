@@ -21,6 +21,7 @@ class Notifications:
         self.password = password
         self.database = database
 
+
     def register_device(self, platform, device_id, uid):
         #Connect to MySQL
         conn = pymysql.connect(self.host, self.username, self.password, self.database, cursorclass=pymysql.cursors.DictCursor)
@@ -74,7 +75,3 @@ class Notifications:
 
         conn.commit()
         conn.close()
-
-
-
-
