@@ -3,6 +3,7 @@ import bleach
 import Helpers
 import json
 import firebase_admin
+import random
 
 #Admin password
 notifications_config = Helpers.read_json_from_file("config/notifications_config.json")
@@ -62,7 +63,8 @@ class Notifications:
         devices = cursor.fetchall()
 
         for i in devices:
-            device_list.append(i["device_id"])
+            if random.random() > random_drop:
+                device_list.append(i["device_id"])
 
         push_notification = firebase_admin.messaging.Message(
             notification=firebase_admin.messaging.Notification(title=title, body=message)
